@@ -15,6 +15,9 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
+                @include('transactions.filter')
+            </div>
+            <div class="box-body">
                     @include('transactions.table')
             </div>
         </div>

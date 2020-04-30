@@ -34,6 +34,11 @@ class ViewServiceProvider extends ServiceProvider
             $dealItems = Deal::pluck('name','id')->toArray();
             $view->with('dealItems', $dealItems);
         });
+        View::composer(['transactions.filter'], function ($view) {
+            $clientItems = Client::pluck('name','id')->toArray();
+            $dealItems = Deal::pluck('name','id')->toArray();
+            $view->with(['dealItems' => $dealItems, 'clientItems' => $clientItems]);
+        });
         //
     }
 }

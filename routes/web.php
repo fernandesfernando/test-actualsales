@@ -29,3 +29,5 @@ Route::resource('clients', 'ClientController');
 Route::resource('deals', 'DealController');
 
 Route::resource('transactions', 'TransactionController');
+
+Route::get('search', ['as' => 'search', 'uses' => 'TransactionController@search']);

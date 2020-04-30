@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateTransactionRequest;
 use App\Repositories\TransactionRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Response;
 
 class TransactionController extends AppBaseController
@@ -147,5 +148,16 @@ class TransactionController extends AppBaseController
         Flash::success('Transaction deleted successfully.');
 
         return redirect(route('transactions.index'));
+    }
+
+    /**
+     * Search method through passed parameters
+     *
+     * @return void
+     */
+    public function search(Request $request)
+    {
+        $input = $request->all();
+        dd($input);
     }
 }
