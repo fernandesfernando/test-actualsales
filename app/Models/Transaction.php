@@ -70,5 +70,6 @@ class Transaction extends Model
     public function deal()
     {
         return $this->belongsTo('App\Models\Deal');
-    }
+    }    
+
 }
