@@ -29,7 +29,7 @@ class TransactionDataTable extends DataTable
      */
     public function query(Transaction $model)
     {
-        return $model->newQuery();
+        return $model->with(['client', 'deal'])->newQuery();
     }
 
     /**
@@ -65,9 +65,19 @@ class TransactionDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'hour',
-            'deal_id',
-            'client_id',
+            'hour',            
+            'client_imported_id' => [
+                'data' => 'client.imported_id'
+            ],
+            'client_name' => [
+                'data' => 'client.name'
+            ],
+            'deal_imported_id' => [
+                'data' => 'deal.imported_id'
+            ],
+            'deal_name' => [
+                'data' => 'deal.name'
+            ],
             'accepted',
             'refused'
         ];

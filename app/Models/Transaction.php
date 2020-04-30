@@ -56,5 +56,19 @@ class Transaction extends Model
         'client_id' => 'required'
     ];
 
-    
+    /**
+     * Get the client that owns the transaction.
+     */
+    public function client()
+    {
+        return $this->belongsTo('App\Models\Client');
+    }
+
+    /**
+     * Get the deal that owns the transaction.
+     */
+    public function deal()
+    {
+        return $this->belongsTo('App\Models\Deal');
+    }
 }
