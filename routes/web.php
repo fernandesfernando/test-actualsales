@@ -24,10 +24,10 @@ Route::get('/home', 'HomeController@index')->middleware('verified');
 
 Route::resource('users', 'UserController')->middleware('auth');
 
-Route::resource('clients', 'ClientController');
+Route::resource('clients', 'ClientController')->middleware('auth');;
 
-Route::resource('deals', 'DealController');
+Route::resource('deals', 'DealController')->middleware('auth');;
 
-Route::resource('transactions', 'TransactionController');
+Route::resource('transactions', 'TransactionController')->middleware('auth');;
 
-Route::get('search', ['as' => 'search', 'uses' => 'TransactionController@search']);
+Route::get('search', ['as' => 'search', 'uses' => 'TransactionController@search'])->middleware('auth');;
