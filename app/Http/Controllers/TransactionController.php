@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\ByClientIdScope;
 use App\DataTables\Scopes\ByDateRange;
 use App\DataTables\Scopes\ByDealIdScope;
 use App\DataTables\TransactionDataTable;
@@ -162,8 +163,9 @@ class TransactionController extends AppBaseController
         $input = $request->all();
 
         return $transactionDataTable
-            ->addScope(new ByDealIdScope($input['deal_id']))
             ->addScope(new ByDateRange($input['start_date'], $input['final_date']))
+            ->addScope(new ByDealIdScope($input['deal_id']))
+            ->addScope(new ByClientIdScope($input['client_id']))
             ->render('transactions.index');
         
     }

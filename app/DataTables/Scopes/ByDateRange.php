@@ -32,15 +32,15 @@ class ByDateRange implements DataTableScope
 
         switch ([$startDate, $finalDate]) {
             case [true, true]:
-                return $query->whereBetween('hour', [$startDate, $finalDate]);    
+                return $query->whereBetween('hour', [\Carbon\Carbon::parse($this->startDate), \Carbon\Carbon::parse($this->finalDate)]);
                 break;
             
             case [true, null]:
-                return $query->where('hour', '>=', $startDate);    
+                return $query->where('hour', '>=', \Carbon\Carbon::parse($this->startDate));    
                 break;
             
             case [null, true]:
-                return $query->where('hour', '<=', $finalDate);    
+                return $query->where('hour', '<=', \Carbon\Carbon::parse($this->finalDate));    
                 break;
 
             default:                
