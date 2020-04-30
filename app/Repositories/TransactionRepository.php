@@ -79,8 +79,17 @@ class TransactionRepository extends BaseRepository
             ]
         );
 
+        $transaction = $this->model()::create([
+            'client_id' => $client->id,
+            'deal_id' => $deal->id,
+            'accepted' => 2,
+            'refused' => 3,
+            'hour' => \Carbon\Carbon::now()
+        ]);
+
         dump($client);
         dump($deal);
+        dump($transaction);
         
     }
 }
