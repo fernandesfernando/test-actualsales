@@ -2,7 +2,7 @@
 
 This project was developed with Laravel, Docker, and Vessel as a command line shortcut to run Docker commands easier.
 
-To install the project, it's necessary to install the packages through Composer, and run the migrations and seed to create and populate the database. Using Vessel, please do the following:
+To install the project, it's necessary to install the packages through Composer, and run the migrations and seed to create and populate the database. Using Vessel, please run the following:
 
 ```
 git clone https://github.com/grupotesseract/test-actualsales
