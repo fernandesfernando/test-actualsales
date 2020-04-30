@@ -12,7 +12,7 @@ class ImportClientsDealsCSV extends Command
      *
      * @var string
      */
-    protected $signature = 'import:clientsdeals';
+    protected $signature = 'import:clientsdeals {filePath}';
 
     /**
      * The console command description.
@@ -38,6 +38,8 @@ class ImportClientsDealsCSV extends Command
      */
     public function handle(TransactionRepository $transactionRepository)
     {
-        $transactionRepository->importCSV('filePath');
+        $filePath = $this->argument('filePath');
+        
+        $transactionRepository->importCSV($filePath);
     }
 }
