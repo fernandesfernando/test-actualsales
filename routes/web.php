@@ -21,13 +21,16 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->middleware('verified');
 
-
 Route::resource('users', 'UserController')->middleware('auth');
 
-Route::resource('clients', 'ClientController')->middleware('auth');;
+Route::resource('clients', 'ClientController')->middleware('auth');
 
-Route::resource('deals', 'DealController')->middleware('auth');;
+Route::resource('deals', 'DealController')->middleware('auth');
 
-Route::resource('transactions', 'TransactionController')->middleware('auth');;
+Route::resource('transactions', 'TransactionController')->middleware('auth');
 
-Route::get('search', ['as' => 'search', 'uses' => 'TransactionController@search'])->middleware('auth');;
+Route::post('importcsv', ['as' => 'importcsv', 'uses' => 'TransactionController@importCSV'])->middleware('auth');
+
+Route::get('importcsv', 'TransactionController@getImportCSV')->middleware('auth');
+
+Route::get('search', ['as' => 'search', 'uses' => 'TransactionController@search'])->middleware('auth');

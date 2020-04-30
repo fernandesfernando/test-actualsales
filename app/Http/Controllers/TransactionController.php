@@ -169,4 +169,26 @@ class TransactionController extends AppBaseController
             ->render('transactions.index');
         
     }
+
+    /**
+     * Method to go to input csv page
+     *
+     * @return void
+     */
+    public function getImportCSV()
+    {
+        return view('transactions.importcsv');
+    }
+
+    /**
+     * Method to import a csv file, passed through request
+     *
+     * @return void
+     */
+    public function importCSV(Request $request)
+    {
+        $filePath = $request->file('csvfile');
+        $this->transactionRepository->importCSV($filePath);
+        return redirect(route('transactions.index'));
+    }
 }

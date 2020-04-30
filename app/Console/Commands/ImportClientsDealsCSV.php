@@ -39,7 +39,6 @@ class ImportClientsDealsCSV extends Command
     public function handle(TransactionRepository $transactionRepository)
     {
         $filePath = $this->argument('filePath');
-        
         $transactionRepository->importCSV($filePath);
     }
 }

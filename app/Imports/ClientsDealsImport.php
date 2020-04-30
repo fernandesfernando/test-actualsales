@@ -18,8 +18,6 @@ class ClientsDealsImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         
-        dump('Starting importing process');
-
         foreach ($rows as $row) {
             
             $clientArrayFromCSV = explode(' @', $row['client']);
@@ -58,8 +56,6 @@ class ClientsDealsImport implements ToCollection, WithHeadingRow
                 'hour' => $hour
             ]);
         }
-
-        dump('Import sucessfully finished');
 
     }
 }
