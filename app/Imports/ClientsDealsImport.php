@@ -7,8 +7,9 @@ use App\Models\Deal;
 use App\Models\Transaction;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ClientsDealsImport implements ToCollection
+class ClientsDealsImport implements ToCollection, WithHeadingRow
 {
     
     /**
@@ -17,31 +18,48 @@ class ClientsDealsImport implements ToCollection
     public function collection(Collection $rows)
     {
         
+        dump('Starting importing process');
+
         foreach ($rows as $row) {
-            dump('linha ', $row);
+            
+            $clientArrayFromCSV = explode(' @', $row['client']);
+            $dealArrayFromCSV = explode(' #', $row['deal']);
+            
+            $clientName = $clientArrayFromCSV[0];
+            $clientId = (int) $clientArrayFromCSV[1];
+            
+            $dealName = $dealArrayFromCSV[0];
+            $dealId = (int) $dealArrayFromCSV[1];
+
+            $hour = \Carbon\Carbon::parse($row['hour']);
+            $accepted = $row['accepted'];
+            $refused = $row['refused'];
+            
+            
+            $client = Client::firstOrCreate(
+                [
+                    'imported_id' => $clientId,
+                    'name' => $clientName,
+                ]
+            );
+
+            $deal = Deal::firstOrCreate(
+                [
+                    'imported_id' => $dealId,
+                    'name' => $dealName,
+                ]
+            );
+
+            $transaction = Transaction::firstOrCreate([
+                'client_id' => $client->id,
+                'deal_id' => $deal->id,
+                'accepted' => $accepted,
+                'refused' => $refused,
+                'hour' => $hour
+            ]);
         }
-        
-        $client = Client::firstOrCreate(
-            [
-                'id' => 2,
-                'name' => 'Fernando',
-            ]
-        );
 
-        $deal = Deal::firstOrCreate(
-            [
-                'id' => 2,
-                'name' => 'Fernando\'s Deal',
-            ]
-        );
-
-        $transaction = Transaction::create([
-            'client_id' => $client->id,
-            'deal_id' => $deal->id,
-            'accepted' => 2,
-            'refused' => 3,
-            'hour' => \Carbon\Carbon::now()
-        ]);
+        dump('Import sucessfully finished');
 
     }
 }

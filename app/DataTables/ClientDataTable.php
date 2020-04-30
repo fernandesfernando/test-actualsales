@@ -65,7 +65,8 @@ class ClientDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name'
+            'name',
+            'imported_id'
         ];
     }
 

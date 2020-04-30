@@ -24,7 +24,8 @@ class Deal extends Model
 
 
     public $fillable = [
-        'name'
+        'name',
+        'imported_id'
     ];
 
     /**
@@ -43,7 +44,8 @@ class Deal extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required'
+        'name' => 'required',
+        'imported_id' => 'required'
     ];
 
     

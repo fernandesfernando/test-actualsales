@@ -16,6 +16,7 @@ class CreateDealsTable extends Migration
         Schema::create('deals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('imported_id');
             $table->timestamps();
             $table->softDeletes();
         });
