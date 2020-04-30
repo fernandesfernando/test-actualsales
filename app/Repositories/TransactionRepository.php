@@ -39,4 +39,14 @@ class TransactionRepository extends BaseRepository
     {
         return Transaction::class;
     }
+
+    /**
+     * Method to import a CSV e insert Clients, Deals and Transaction entities
+     *
+     * @return void
+     */
+    public function importCSV($filePath)
+    {
+        dump($filePath);
+    }
 }
