@@ -140,6 +140,20 @@ abstract class BaseRepository
     }
 
     /**
+     * First or Create model record
+     *
+     * @param array $input
+     *
+     * @return Model
+     */
+    public function firstOrCreate($input)
+    {
+        $model = $this->model->firstOrCreate($input);
+
+        return $model;
+    }
+
+    /**
      * Find model record for given id
      *
      * @param int $id

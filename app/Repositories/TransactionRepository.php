@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Transaction;
 use App\Repositories\BaseRepository;
+use App\Repositories\ClientRepository;
+use App\Repositories\DealRepository;
 
 /**
  * Class TransactionRepository
@@ -21,6 +23,21 @@ class TransactionRepository extends BaseRepository
         'deal_id',
         'client_id'
     ];
+
+    protected $clientRepository;
+    protected $dealRepository;
+
+    /**
+     * Construct method to inject Client and Deals repositories
+     *
+     * @param ClientRepository $clientRepo
+     * @param DealRepository $dealRepo
+     */
+    public function __construct(ClientRepository $clientRepo, DealRepository $dealRepo)
+    {
+        $this->clientRepository = $clientRepo;
+        $this->dealRepository = $dealRepo;
+    }
 
     /**
      * Return searchable fields
@@ -48,5 +65,22 @@ class TransactionRepository extends BaseRepository
     public function importCSV($filePath)
     {
         dump($filePath);
+        $client = $this->clientRepository->firstOrCreate(
+            [
+                'id' => 2,
+                'name' => 'Fernando',
+            ]
+        );
+
+        $deal = $this->dealRepository->firstOrCreate(
+            [
+                'id' => 2,
+                'name' => 'Fernando\'s Deal',
+            ]
+        );
+
+        dump($client);
+        dump($deal);
+        
     }
 }
