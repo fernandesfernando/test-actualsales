@@ -26,6 +26,8 @@ class ByDealIdScope implements DataTableScope
     {
         $dealId = $this->dealId;
 
-        return $query->where('deal_id', $dealId);
+        if ($dealId) {
+            return $query->where('deal_id', $dealId);
+        }
     }
 }

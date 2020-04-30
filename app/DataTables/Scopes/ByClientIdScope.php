@@ -26,6 +26,8 @@ class ByClientIdScope implements DataTableScope
     {
         $clientId = $this->clientId;
 
-        return $query->where('client_id', $clientId);
+        if ($clientId) {
+            return $query->where('client_id', $clientId);
+        }
     }
 }

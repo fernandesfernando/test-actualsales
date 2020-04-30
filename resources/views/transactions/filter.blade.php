@@ -8,12 +8,12 @@
     <!-- Client Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('client_id', 'Client:') !!}
-        {!! Form::select('client_id', $clientItems, request()->client_id, ['class' => 'form-control']) !!}
+        {!! Form::select('client_id', [null=>'Please Select'] + $clientItems, request()->client_id, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group col-sm-6">
         {!! Form::label('deal_id', 'Deal:') !!}
-        {!! Form::select('deal_id', $dealItems, request()->deal_id, ['class' => 'form-control']) !!}
+        {!! Form::select('deal_id', [null=>'Please Select'] + $dealItems, request()->deal_id, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Deal Id Field -->
