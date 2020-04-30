@@ -28,15 +28,37 @@
         {!! Form::text('final_date', request()->final_date, ['class' => 'form-control', 'id' => 'final_date']) !!}
     </div>
 
+    <!-- Values of checkboxes are using SQL pattern to order by to specific timestamp piece -->
+    <div class="form-group col-sm-3">
+        {!! Form::label('order_hour', 'Group by Hour:') !!}
+        {!! Form::checkbox('order_hour', 'TIME(hour)', request()->order_hour); !!}
+    </div>
+
+    <div class="form-group col-sm-3">
+        {!! Form::label('order_year', 'Group by Year:') !!}
+        {!! Form::checkbox('order_year', 'YEAR(hour)', request()->order_year); !!}
+    </div>
+
+    <div class="form-group col-sm-3">
+        {!! Form::label('order_month', 'Group by Month:') !!}
+        {!! Form::checkbox('order_month', 'MONTH(hour)', request()->order_month); !!}
+    </div>
+    
+    <div class="form-group col-sm-3">
+        {!! Form::label('order_day', 'Group by Day:') !!}
+        {!! Form::checkbox('order_day', 'DAY(hour)', request()->order_day); !!}
+    </div>
+
+
     @push('scripts')
         <script type="text/javascript">
             $('#start_date').datetimepicker({
-                format: 'YYYY-MM-DD HH:mm:ss',
+                format: 'YYYY-MM-DD HH:mm',
                 useCurrent: true,
                 sideBySide: true
             })
             $('#final_date').datetimepicker({
-                format: 'YYYY-MM-DD HH:mm:ss',
+                format: 'YYYY-MM-DD HH:mm',
                 useCurrent: true,
                 sideBySide: true
             })

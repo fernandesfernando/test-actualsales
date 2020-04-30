@@ -65,7 +65,6 @@ class TransactionDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'hour',            
             'client_imported_id' => [
                 'data' => 'client.imported_id'
             ],
@@ -78,6 +77,27 @@ class TransactionDataTable extends DataTable
             'deal_name' => [
                 'data' => 'deal.name'
             ],
+            'complete_hour' => [
+                'data' => 'hour'
+            ],         
+            'hour' => [
+                'orderable' => false,
+                'data' => 'only_hour'
+            ],
+            'year' => [
+                'orderable' => false,
+                'data' => 'only_year'
+            ],
+            'month' => [
+                'orderable' => false,
+                'data' => 'only_month'
+            ],
+            'day' => [
+                'orderable' => false,
+                'data' => 'only_day'
+            ],
+            
+
             'accepted',
             'refused'
         ];

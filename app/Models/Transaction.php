@@ -21,7 +21,9 @@ class Transaction extends Model
     public $table = 'transactions';
     
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'hour'];
+
+    protected $appends = ['only_hour', 'only_year', 'only_day', 'only_month'];
 
 
     public $fillable = [
@@ -71,5 +73,25 @@ class Transaction extends Model
     {
         return $this->belongsTo('App\Models\Deal');
     }    
+
+    public function getOnlyHourAttribute()
+    {
+        return $this->hour->format('H:i');
+    }
+
+    public function getOnlyDayAttribute()
+    {
+        return $this->hour->format('d');
+    }
+
+    public function getOnlyMonthAttribute()
+    {
+        return $this->hour->format('m');
+    }
+
+    public function getOnlyYearAttribute()
+    {
+        return $this->hour->format('Y');
+    }
 
 }

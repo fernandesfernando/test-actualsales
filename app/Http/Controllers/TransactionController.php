@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\Scopes\ByClientIdScope;
 use App\DataTables\Scopes\ByDateRange;
 use App\DataTables\Scopes\ByDealIdScope;
+use App\DataTables\Scopes\ByOrderByHour;
 use App\DataTables\TransactionDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateTransactionRequest;
@@ -162,7 +163,16 @@ class TransactionController extends AppBaseController
     {
         $input = $request->all();
 
+        //READING FROM CHECKBOX SELECTED AND CREATING THE ORDERBY RAW STRING
+        $orderByRaw = [];
+        isset($input['order_hour']) ? array_push($orderByRaw, $input['order_hour']) : null;
+        isset($input['order_year']) ? array_push($orderByRaw, $input['order_year']) : null;
+        isset($input['order_month']) ? array_push($orderByRaw, $input['order_month']) : null;
+        isset($input['order_day']) ? array_push($orderByRaw, $input['order_day']) : null;
+        $orderByRawString = implode(',', $orderByRaw);
+
         return $transactionDataTable
+            ->addScope(new ByOrderByHour($orderByRawString))
             ->addScope(new ByDateRange($input['start_date'], $input['final_date']))
             ->addScope(new ByDealIdScope($input['deal_id']))
             ->addScope(new ByClientIdScope($input['client_id']))
