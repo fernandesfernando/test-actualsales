@@ -27,3 +27,5 @@ Route::resource('users', 'UserController')->middleware('auth');
 Route::resource('clients', 'ClientController');
 
 Route::resource('deals', 'DealController');
+
+Route::resource('transactions', 'TransactionController');
