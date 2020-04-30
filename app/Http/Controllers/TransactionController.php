@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\Scopes\ByDateRange;
+use App\DataTables\Scopes\ByDealIdScope;
 use App\DataTables\TransactionDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateTransactionRequest;
@@ -155,9 +157,14 @@ class TransactionController extends AppBaseController
      *
      * @return void
      */
-    public function search(Request $request)
+    public function search(TransactionDataTable $transactionDataTable, Request $request)
     {
         $input = $request->all();
-        dd($input);
+
+        return $transactionDataTable
+            ->addScope(new ByDealIdScope($input['deal_id']))
+            ->addScope(new ByDateRange($input['start_date'], $input['final_date']))
+            ->render('transactions.index');
+        
     }
 }
