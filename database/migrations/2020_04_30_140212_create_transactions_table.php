@@ -18,6 +18,8 @@ class CreateTransactionsTable extends Migration
             $table->timestamp('hour');
             $table->integer('deal_id')->unsigned();
             $table->integer('client_id')->unsigned();
+            $table->integer('accepted');
+            $table->integer('refused');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('deal_id')->references('id')->on('deals');

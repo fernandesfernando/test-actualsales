@@ -67,7 +67,9 @@ class TransactionDataTable extends DataTable
         return [
             'hour',
             'deal_id',
-            'client_id'
+            'client_id',
+            'accepted',
+            'refused'
         ];
     }
 

@@ -26,6 +26,18 @@
     {!! Form::select('client_id', $clientItems, null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Accepted Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('accepted', 'Accepted:') !!}
+    {!! Form::number('accepted', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Accepted Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('refused', 'Refused:') !!}
+    {!! Form::number('refused', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

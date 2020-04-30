@@ -24,11 +24,12 @@ class Transaction extends Model
     protected $dates = ['deleted_at'];
 
 
-
     public $fillable = [
         'hour',
         'deal_id',
-        'client_id'
+        'client_id',
+        'accepted',
+        'refused',
     ];
 
     /**
@@ -39,7 +40,9 @@ class Transaction extends Model
     protected $casts = [
         'id' => 'integer',
         'deal_id' => 'integer',
-        'client_id' => 'integer'
+        'client_id' => 'integer',
+        'accepted' => 'integer',
+        'refused' => 'integer'
     ];
 
     /**
