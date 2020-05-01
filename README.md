@@ -58,5 +58,11 @@ Some considerations:
 
 2 - At admin, we have Clients, Deals and Transactions entities placed at left sidebar. The import CSV interface and all filter features are located at Transactions section.
 
+3 - The SQL script is located at the project root, and was generated automatically by Laravel, through:
+
+```
+./vessel art migrate --pretend --no-ansi > migrate.sql
+```
+
 
 
